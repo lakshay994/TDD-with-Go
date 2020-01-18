@@ -2,16 +2,30 @@ package main
 
 import "fmt"
 
-const helloString = "Hello "
+const helloString = "Hello, "
+const namasteString = "Namaste, "
+const punjabiString = "Sat Sri Akal, "
 
 func main() {
-	fmt.Println(HelloString("World!"))
+	fmt.Println(PrintString("World!", "punjabi"))
 }
 
-// HelloString - this is the domain. needs to be seperated from the side-effects
-func HelloString(val string) string {
+// PrintString - this is the domain. needs to be seperated from the side-effects
+func PrintString(val, language string) string {
 	if val == "" {
 		val = "World"
 	}
-	return helloString + val
+	return pickLanguage(language) + val
+}
+
+func pickLanguage(language string) (prefix string) {
+	switch language {
+	case "english":
+		prefix = helloString
+	case "hindi":
+		prefix = namasteString
+	case "punjabi":
+		prefix = punjabiString
+	}
+	return
 }
